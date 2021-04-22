@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:fb="http://ogp.me/ns/fb#">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Other Topics | Watch Dogs | Security Analysis of Android Applications</title>
+    <meta name="description" content="Team Watch Dogs | Security Analysis of Android Applications">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Team Watch Dogs | CS416[2020]">
+    <link rel="image_src" href="https://i.redd.it/p8vw8ggae1751.jpg">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/highlight.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body class="body-bg" style="position: relative;" data-spy="scroll" data-target="#side_menu" data-offset=92>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+    <a class="navbar-brand" href="#">Team Watch Dogs</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="./">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="./android_application_fundamentals.html">Android Application Fundamentals</a></li>
+            <li class="nav-item"><a class="nav-link" href="./reverse_engineering.html">Reverse Engineering</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="./security_analysis.html">
+                    Security Analysis
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="./security_analysis.html#static-analysis">Static Analysis</a>
+                    <a class="dropdown-item" href="./security_analysis.html#dynamic-analysis">Dynamic Analysis</a>
+                    <a class="dropdown-item" href="./security_analysis.html#data-storage-analysis">Data Storage Analysis</a>
+                    <a class="dropdown-item" href="./security_analysis.html#cryptography">Cryptography</a>
+                </div>
+            </li>
+            <li class="nav-item active dropdown">
+                <a class="nav-link dropdown-toggle" href="./other_topics.html">
+                    Other Topics
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="./other_topics.html#rooting-android-device">Rooting Android Device</a>
+                    <a class="dropdown-item" href="./other_topics.html#malicious-app-detection">Malicious App Detection</a>
+                    <a class="dropdown-item" href="./other_topics.html#useful-tools">Useful Tools</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="side-menu sticky_menu">
+                    <div class="page-title">
+                        Other Topics
+                    </div>
+                    <div id="side">
+                        <div id="side_menu">
+                            <div class="side-menu-header">
+                                <h4 class="text-left">Rooting</h4>
+                            </div>
+                            <div class="side-menu-content">
+                                <ul class="side_nav">
+                                    <li><a class="nav-link" href="#rooting-intro">Introduction</a></li>
+                                    <li><a class="nav-link" href="#which-mob-can-be-rooted">Which Mobiles Can Be Rooted</a></li>
+                                    <li><a class="nav-link" href="#magisk">Rooting with Magisk</a></li>
+                                </ul>
+                            </div>
+                            <div class="side-menu-header">
+                                <h4 class="text-left">Malicious App detection</h4>
+                            </div>
+                            <div class="side-menu-content">
+                                <ul class="side_nav">
+                                    <li><a class="nav-link" href="#diff-types">Different Types of Malicious App</a></li>
+                                </ul>
+                            </div>
+                            <div class="side-menu-header">
+                                <h4 class="text-left">List of Tools and their functions for Security Analysis</h4>
+                            </div>
+                            <div class="side-menu-content">
+                                <ul class="side_nav">
+                                    <li><a class="nav-link" href="#online-analyzer-tools">Online Analyzer Tools</a></li>
+                                    <li><a class="nav-link" href="#static-analysis-tools">Static Analysis Tools</a></li>
+                                    <li><a class="nav-link" href="#reverse-engineering-tools">Reverse Engineering Tools</a></li>
+                                    <li><a class="nav-link" href="#dynamic-analysis-tools">Dynamic Analysis Tools</a></li>
+                                    <li><a class="nav-link" href="#misc-tools">Misc Tools</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="side-content">
+                    <section class="section" id="intro">
+                        <div class="title-img d-flex align-items-center justify-content-center">
+                            <img src="assets/img/other_topics/other-topics.jpg" alt="Other Topics" class="img-fluid">
+                        </div>
+                    </section>
+                    <section class="section" id="rooting-android-device">
+                        <h2 class="content-title">Rooting</h2>
+                        <section class="section" id="rooting-intro">
+                            <p>
+                                <i>Rooting</i> (i.e., modifying the OS so that you can run commands as the root user) is recommended for testing on a real device. This gives you full control over the operating system and allows you to bypass restrictions such as app sandboxing. These privileges in turn allow you to use techniques like code injection and function hooking more easily.
+                            </p>
+                            Note that rooting is risky, and three main consequences need to be clarified before you proceed. Rooting can have the following negative effects:
+                            <ul>
+                                <li>
+                                    voiding the device warranty (always check the manufacturer's policy before taking any action)
+                                </li>
+                                <li>
+                                    "bricking" the device, i.e., rendering it inoperable and unusable
+                                </li>
+                                <li>
+                                    creating additional security risks (because built-in exploit mitigations are often removed)
+                                </li>
+                            </ul>
+                            <p>
+                                You should not root a personal device that you store your private information on. We recommend getting a cheap, dedicated test device instead. Many older devices, such as Google's Nexus series, can run the newest Android versions and are perfectly fine for testing.
+                            </p>
+                        </section>
+                        <section class="section" id="which-mob-can-be-rooted">
+                            <h3 class="content-title">Which Mobiles Can Be Rooted</h3>
+                            <p>
+                                Virtually any Android mobile can be rooted. Commercial versions of Android OS (which are Linux OS evolutions at the kernel level) are optimized for the mobile world. Some features have been removed or disabled for these versions, for example, non-privileged users' ability to become the 'root' user (who has elevated privileges). Rooting a phone means allowing users to become the root user, e.g., adding a standard Linux executable called su, which is used to change to another user account.
+                            </p>
+                            <p>
+                                To root a mobile device, first, unlock its bootloader. The unlocking procedure depends on the device manufacturer. However, for practical reasons, rooting some mobile devices is more popular than rooting others, particularly when it comes to security testing: devices created by Google and manufactured by companies like Samsung, LG, and Motorola are among the most popular, particularly because they are used by many developers. The device warranty is not nullified when the bootloader is unlocked and Google provides many tools to support the root itself. A curated list of guides for rooting all major brand devices is posted on the <a href="https://www.xda-developers.com/root/" target="_blank">XDA forums</a>.
+                            </p>
+                        </section>
+                        <section class="section" id="magisk">
+                            <h3 class="content-title">Rooting with Magisk</h3>
+                            <p>
+                                Magisk ("Magic Mask") is one way to root your Android device. Its specialty lies in the way the modifications on the system are performed. While other rooting tools alter the actual data on the system partition, Magisk does not (which is called "systemless"). This enables a way to hide the modifications from root-sensitive applications (e.g. for banking or games) and allows using the official Android OTA upgrades without the need to unroot the device beforehand.
+                            </p>
+                            <p>
+                                You can get familiar with Magisk by reading the official <a href="https://topjohnwu.github.io/Magisk/" target="_blank">documentation on GitHub</a>. If you don't have Magisk installed, you can find installation instructions in <a href="https://topjohnwu.github.io/Magisk/">the documentation</a>. If you use an official Android version and plan to upgrade it, Magisk provides a <a href="https://topjohnwu.github.io/Magisk/ota.html">tutorial on GitHub</a>.
+                            </p>
+                            <p>
+                                Furthermore, developers can use the power of Magisk to create custom modules and <a href="https://github.com/Magisk-Modules-Repo/submission" target="_blank">submit</a> them to the official <a href="https://github.com/Magisk-Modules-Repo">Magisk Modules repository</a>. Submitted modules can then be installed inside the Magisk Manager application. One of these installable modules is a systemless version of the famous <a href="https://repo.xposed.info/module/de.robv.android.xposed.installer">Xposed Framework</a> (available for SDK versions up to 27).
+                            </p>
+                        </section>
+                    </section>
+                    <section class="section" id="malicious-app-detection">
+                        <h2 class="content-title">Malicious App detection</h2>
+                        <section class="section" id="mal-app-det-intro">
+                            <p>
+                                A malicious app is a software or piece of code designed for nefarious purposes. As practice shows us, these purposes can range from recon (i.e., gathering intel on a designated target to track movement and identify vulnerabilities) to intentionally damage tangible or intangible assets
+                            </p>
+                        </section>
+                        <section class="section" id="diff-types">
+                            <h3 class="content-title">Different Types of Malicious App</h3>
+                            <ol>
+                                <li>
+                                    Spyware and Madware
+                                </li>
+                                <li>
+                                    Drive-by Downloads
+                                </li>
+                                <li>
+                                    Viruses and Trojans
+                                </li>
+                                <li>
+                                    Mobile Phishing
+                                </li>
+                                <li>
+                                    Browser Exploits
+                                </li>
+                            </ol>
+                            So instead of breaking the defence, the approach of dynamic analysis is to work from the inside i.e. to exploit the application’s own ability to perform tasks to our advantage and crack into it.
+                        </section>
+                    </section>
+                    <section class="section" id="useful-tools">
+                        <h2 class="content-title">List of Tools and their functions for Security Analysis</h2>
+                        <section class="section" id="useful-tools-intro">
+                            Tool are divided into following category based on their functionality and uses
+                            <ul>
+                                <li>
+                                    Online Analyser
+                                </li>
+                                <li>
+                                    Static Analysis
+                                </li>
+                                <li>
+                                    Reverse Engineering
+                                </li>
+                                <li>
+                                    Dynamic Analysis Tools
+                                </li>
+                                <li>
+                                    Misc Tools
+                                </li>
+                            </ul>
+                            Top 5 paid and free security analysis tool for android application as listed down below.
+                        </section>
+                        <section class="section" id="online-analyzer-tools">
+                            <h3 class="content-title">Online Analyzer Tools</h3>
+                            <ul style="list-style-type: disclosure-closed">
+                                <li>
+                                    <div class="logo-img d-flex align-items-center justify-content-center">
+                                        <a href="https://www.appknox.com/" target="_blank"><img src="assets/img/other_topics/AppknoxLogo.png" alt="Logo" class="img-fluid"></a>
+                                    </div>
+                                    <br>
+                                    <a href="https://www.appknox.com/" target="_blank">Appknox</a> is a <b>Paid</b> platform. It use world's most Powerful plug and play VAPT platform which helps Businesses to build a safe and secure mobile ecosystem. It’s offer Static Application Security Testing (SAST) , Dynamic Application Security Testing (DAST) and API Security testing.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <div class="logo-img d-flex align-items-center justify-content-center">
+                                        <a href="https://www.virustotal.com/gui/" target="_blank"><img src="assets/img/other_topics/vt-enterprise.svg" alt="Logo" class="img-fluid"></a>
+                                    </div>
+                                    <br>
+                                    <a href="https://www.virustotal.com/gui/" target="_blank">VirusTotal</a> is a free service that analyzes files and URLs for viruses, worms, trojans and other kinds of malicious content. VirusTotal inspects items with over 70 antivirus scanners and URL/domain blacklisting services, in addition to a myriad of tools to extract signals from the studied content. Any user can select a file from their computer using their browser and send it to VirusTotal.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <div class="logo-img d-flex align-items-center justify-content-center">
+                                        <a href="https://www.boozallen.com/expertise/products/appcritique.html" target="_blank"><img src="assets/img/other_topics/appcritique.png" alt="Logo" class="img-fluid"></a>
+                                    </div>
+                                    <br>
+                                    <a href="https://www.boozallen.com/expertise/products/appcritique.html" target="_blank">AppCritique AVA</a> is a vulnerability reporting service that puts mobile apps through dozens of checks, including some of the latest detectable vulnerabilities. By providing detailed security reports within days, it frees app developers to better concentrate on delivering in-demand features and capabilities that take full advantage of iOS and Android’s latest functionality.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <div class="logo-img d-flex align-items-center justify-content-center">
+                                        <a href="https://appdetonator.run/" target="_blank"><img src="assets/img/other_topics/app-detonator.png" alt="Logo" class="img-fluid"></a>
+                                    </div>
+                                    <br>
+                                    <a href="https://appdetonator.run/" target="_blank">App Detonator</a>: Detonate APK binary to provide source code level details including app author, signature, build and manifest information. 3 Analysis/day free quota.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <div class="logo-img d-flex align-items-center justify-content-center">
+                                        <a href="https://www.nowsecure.com/blog/2016/09/19/announcing-nowsecure-lab-automated/" target="_blank"><img src="assets/img/other_topics/now-secure.jpg" alt="Logo" class="img-fluid"></a>
+                                    </div>
+                                    <br>
+                                    <a href="https://www.nowsecure.com/blog/2016/09/19/announcing-nowsecure-lab-automated/" target="_blank">NowSecure</a>: Enterprise tool for mobile app security testing both Android and iOS mobile apps. Lab Automated features dynamic and static analysis on real devices in the cloud to return results in minutes. Its available in paid version only.
+                                    <br>
+                                    <br>
+                                </li>
+                            </ul>
+                        </section>
+                        <section class="section" id="static-analysis-tools">
+                            <h3 class="content-title">Static Analysis Tools</h3>
+                            <ul style="list-style-type: disclosure-closed">
+                                <li>
+                                    <div class="logo-img d-flex align-items-center justify-content-center">
+                                        <a href="https://github.com/sonyxperiadev/ApkAnalyser" target="_blank"><img src="assets/img/other_topics/apk-analyser.svg" alt="Logo" class="img-fluid"></a>
+                                    </div>
+                                    <br>
+                                    <a href="https://github.com/sonyxperiadev/ApkAnalyser" target="_blank">ApkAnalyser</a> is a static, virtual analysis tool for examining and validating the development work of your Android app. It's a complete tool chain which supports modification of the binary application with more printouts. You are then able to repack, install, run and verify the result from logcat. ApkAnalyser also supports resource analysis, and you can decode XML, look up resource references and detect potential issues in your app.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <div class="logo-img d-flex align-items-center justify-content-center">
+                                        <a href="https://github.com/honeynet/apkinspector/" target="_blank"><img src="assets/img/other_topics/apk-inspector.png" alt="Logo" class="img-fluid"></a>
+                                    </div>
+                                    <br>
+                                    <a href="https://github.com/honeynet/apkinspector/" target="_blank">APK Inspector</a> is a powerful GUI tool for analysts to analyze the Android applications.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <div class="logo-img d-flex align-items-center justify-content-center">
+                                        <a href="https://www.pnfsoftware.com/" target="_blank"><img src="assets/img/other_topics/jeb.png" alt="Logo" class="img-fluid"></a>
+                                    </div>
+                                    <br>
+                                    <a href="https://www.pnfsoftware.com/" target="_blank">JEB Decompiler</a>: <b>Paid</b> JEB is a modular reverse engineering platform for professionals. Perform disassembly, decompilation, debugging, and analysis of code and document files, manually or as part of an analysis pipeline. Use JEB to analyze Android apps, reverse engineer Windows malware, audit embedded code, and much more.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <div class="logo-img d-flex align-items-center justify-content-center">
+                                        <a href="https://github.com/vincentcox/StaCoAn" target="_blank"><img src="assets/img/other_topics/stacoan.png" alt="Logo" class="img-fluid"></a>
+                                    </div>
+                                    <br>
+                                    <a href="https://github.com/vincentcox/StaCoAn" target="_blank">StaCoAn</a>: Cross Platform tool which aids developers, bug bounty hunters and ethical hackers performing static code analysis on mobile applications. This tool was created with a big focus on usability and graphical guidance in the user interface.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <a href="http://pscout.csl.toronto.edu/" target="_blank">PScout</a>: A version-independent  tool  to  extract the permission specification and take the first steps to an-swer some key questions about Android’s permission system.One of the challenges with extracting a permission specifi-cation from Android is that the permission checks and APIcalls  that  lead  to  them  are  distributed  over  an  extremely large code base.
+                                    <br>
+                                    <br>
+                                </li>
+                            </ul>
+                        </section>
+                        <section class="section" id="reverse-engineering-tools">
+                            <h3 class="content-title">Reverse Engineering Tools</h3>
+                            <ul style="list-style-type: disclosure-closed">
+                                <li>
+                                    <div class="logo-img d-flex align-items-center justify-content-center">
+                                        <a href="https://ibotpeaches.github.io/Apktool/" target="_blank"><img src="assets/img/other_topics/apk-tool.png" alt="Logo" class="img-fluid"></a>
+                                    </div>
+                                    <br>
+                                    <a href="https://ibotpeaches.github.io/Apktool/" target="_blank">Apktool</a>: A tool for reverse engineering 3rd party, closed, binary Android apps. It can decode resources to nearly original form and rebuild them after making some modifications. It also makes working with an app easier because of the project like file structure and automation of some repetitive tasks like building apk, etc.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/pxb1988/dex2jar" target="_blank">Dex2Jar</a>: Tools to work with android .dex and java .class files.  The core feature of <b>Dex2Jar</b> is to convert the classes. dex file of an APK to classes. jar or vice versa. So, it is possible to view the source code of an Android application using any Java decompiler, and it is completely readable.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/appknox/AFE" target="_blank">Android Framework for Exploitation</a>, is a framework for exploiting android based devices and applications.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/JesusFreke/smali" target="_blank">Smali/Baksmali</a> is an assembler/disassembler for the dex format used by dalvik, Android's Java VM implementation. The syntax is loosely based on Jasmin's/dedexer's syntax, and supports the full functionality of the dex format (annotations, debug info, line info, etc).
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <a href="http://java-decompiler.github.io/" target="_blank">JD-GUI</a> is a standalone graphical utility that displays Java source codes of “.class” files. You can browse the reconstructed source code with the JD-GUI for instant access to methods and fields.
+                                    <br>
+                                    <br>
+                                </li>
+                            </ul>
+                        </section>
+                        <section class="section" id="dynamic-analysis-tools">
+                            <h3 class="content-title">Dynamic Analysis Tools</h3>
+                            <ul style="list-style-type: disclosure-closed">
+                                <li>
+                                    <div class="logo-img d-flex align-items-center justify-content-center">
+                                        <a href="https://github.com/MobSF/Mobile-Security-Framework-MobSF" target="_blank"><img src="assets/img/other_topics/mobsf.png" alt="Logo" class="img-fluid"></a>
+                                    </div>
+                                    <br>
+                                    <a href="https://github.com/MobSF/Mobile-Security-Framework-MobSF" target="_blank">MobSF</a>: Mobile Security Framework (MobSF) is an automated, all-in-one mobile application (Android/iOS/Windows) pen-testing, malware analysis and security assessment framework capable of performing static and dynamic analysis. MobSF support mobile app binaries (APK, XAPK, IPA & APPX) along with zipped source code and provides REST APIs for seamless integration with your CI/CD or DevSecOps pipeline.The Dynamic Analyzer helps you to perform runtime security assessment and interactive instrumented testing.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <div class="logo-img d-flex align-items-center justify-content-center">
+                                        <a href="https://appsec-labs.com/AppUse/" target="_blank"><img src="assets/img/other_topics/appsec-labs-logo-007.png" alt="Logo" class="img-fluid"></a>
+                                    </div>
+                                    <br>
+                                    <a href="https://appsec-labs.com/AppUse/" target="_blank">AppUse</a> is a VM (Virtual Machine) developed by AppSec Labs. It is a unique platform for mobile application security testing, Android and iOS applications and includes exclusive custom-made tools and scripts created by AppSec Labs.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <a href="https://manifestsecurity.com/appie/" target="_blank">Appie</a> is a software package that has been pre-configured to function as an Android Pentesting Environment. It is completely portable and can be carried on USB stick or smartphone. This is a one stop answer for all the tools needed in Android Application Security Assessment and an awesome alternative to existing virtual machines.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <div class="logo-img d-flex align-items-center justify-content-center">
+                                        <a href="https://github.com/AndroidHooker/hooker" target="_blank"><img src="assets/img/other_topics/android-hooker.png" alt="Logo" class="img-fluid"></a>
+                                    </div>
+                                    <br>
+                                    <a href="https://github.com/AndroidHooker/hooker" target="_blank">AndroidHooker</a> is an open source project for dynamic analyses of Android applications. This project provides various tools and applications that can be used to automatically intercept and modify any API calls made by a targeted application.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <a href="https://artist.cispa.saarland/" target="_blank">ARTist</a> is a flexible open source instrumentation and hybrid analysis framework for Android apps and Android’s Java middleware. It is based on the Android Runtime’s (ART) compiler and modifies code during on-device compilation. ARTist blends particularly well into the Android app install mechanism because it does not change the app’s package (APK) file but just replaces the compiled native version, hence it preserves the package signature so that modified apps still receive updates.
+                                    <br>
+                                    <br>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section class="section" id="misc-tools">
+                            <h3 class="content-title">Misc Tools</h3>
+                            <ul style="list-style-type: disclosure-closed">
+                                <li>
+                                    <a href="https://developer.android.com/studio/command-line/adb" target="_blank">Android Debug Bridge (adb)</a>: Android Debug Bridge (adb) is a versatile command-line tool that lets you communicate with a device. The adb command facilitates a variety of device actions, such as installing and debugging apps, and it provides access to a Unix shell that you can use to run a variety of commands on a device.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/dpnishant/appmon" target="_blank">AppMon</a>: AppMon is an automated framework for monitoring and tampering system API calls of native macOS, iOS and android apps. It is based on Frida.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/SecTheTech/AMDH" target="_blank">Android Mobile Device Hardening</a>: AMDH scans and harden device's settings and list harmful installed Apps based on permissions.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/linkedin/qark/" target="_blank">QARK</a>: QARK by LinkedIn is for app developers to scan app for security issues.
+                                    <br>
+                                    <br>
+                                </li>
+                                <li>
+                                    <a href="https://oversecured.com/" target="_blank">Oversecured</a>: A mobile app vulnerability scanner, designed for security researchers and bug bounty hackers. It also allows integrations into the DevOps process for businesses.
+                                    <br>
+                                    <br>
+                                </li>
+                            </ul>
+                        </section>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="container-fluid">
+    <div class="text-center bg-dark text-light p-3 h6" style="margin-bottom:0">
+        <div>Developed by Team Watch Dogs [CS416 2021 | IIT Bombay]</div>
+    </div>
+</footer>
+
+
+<script src="./assets/js/vendor/jquery-3.5.1.min.js"></script>
+<script src="./assets/js/bootstrap.min.js"></script>
+
+<script src="./assets/js/highlight.min.js"></script>
+<script src="./assets/js/main.js"></script>
+</body>
+</html>

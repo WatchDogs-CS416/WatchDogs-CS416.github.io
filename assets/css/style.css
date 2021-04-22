@@ -1,3 +1,6 @@
+html, body{
+    scroll-behavior: smooth;
+}
 .fakeimg {
     height: 200px;
     background: #aaa;
@@ -6,11 +9,11 @@
     padding: 25px;
 }
 .page-title{
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
     border: 2px solid;
-    padding: 20px;
-    /*margin: 20px;*/
+    padding: 10px;
+    margin: 10px;
 }
 .sticky_menu{
     position: sticky;
@@ -25,19 +28,20 @@
     font-weight: 400;
     display: flex;
     flex-direction: column;
-    /*overflow: auto;*/
+    overflow-y: auto;
+    max-height: calc(100vh - 104px);
 }
 
-#side>div:first-child{
+#side>div{
     margin-bottom: 20px;
 }
 
 #side_menu{
     margin: 0;
     /*margin-bottom: 20px;*/
-    padding: 30px;
+    padding: 15px;
     background: white;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
     font-weight: 400;
     display: flex;
     flex-direction: column;
@@ -118,17 +122,53 @@
 }
 .side-menu-content>ul li>a{
     transition: all 0s ease-in-out;
-    padding-left: 10px  ;
-    color: #243452;
+    padding: 5px 10px;
+    /*padding-left: 10px;*/
+    color: #111111;
 }
 .side-menu-content>ul li>a.active{
     margin-left: -5px;
-    /*border-left: solid 5px #243452;*/
-    border-radius: 5px;
-    padding-top: 2px;
+    border-left: solid 5px #111111;
+    /*border-radius: 5px;*/
+    /*padding-top: 2px;*/
     background: #ececec;
     /*color: #092c3f;*/
     /*font-weight: 700;*/
-    padding-bottom: 2px;
+    /*padding-bottom: 2px;*/
     font-weight: bold;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; // remove the gap so it doesn't close
+}
+.dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+}
+.content-title{
+    margin-bottom: 20px;
+}
+.content-sub-title{
+    margin-bottom: 10px;
+    font-size: 1.5em;
+}
+.hljs-deletion, .hljs-number, .hljs-quote, .hljs-selector-class, .hljs-selector-id, .hljs-string, .hljs-template-tag, .hljs-type {
+    color: #ff6b79;
+}
+.text-orange{
+    color: #d58512;
+}
+.hash>li{
+    list-style-type: "# ";
+}
+.side-menu-header{
+
+}
+.side-menu-header>h4{
+    border-bottom: 2px solid #111111;
+}
+.logo-img img{
+    max-width: 200px;
+    max-height: 100px;
 }
