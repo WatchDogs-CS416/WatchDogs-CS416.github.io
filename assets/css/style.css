@@ -297,3 +297,10 @@ a{
     opacity: 1;
     top: 100%;
 }
+.name, .dept{
+    text-align: center;
+}
+.waypt-animate{
+    opacity: 0;
+    visibility: hidden;
+}
