@@ -311,6 +311,9 @@ a{
     opacity: 1;
     top: 100%;
 }
+.name{
+    font-size: 1.15em;
+}
 .name, .dept{
     text-align: center;
 }
