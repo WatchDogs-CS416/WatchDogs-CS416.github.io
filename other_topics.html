@@ -48,7 +48,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="./other_topics.html#rooting-android-device">Rooting Android Device</a>
-                    <a class="dropdown-item" href="./other_topics.html#malicious-app-detection">Malicious App Detection</a>
+                    <a class="dropdown-item" href="./other_topics.html#malicious-app-detection">Android Malware</a>
                     <a class="dropdown-item" href="./other_topics.html#useful-tools">Useful Tools</a>
                 </div>
             </li>
@@ -77,11 +77,12 @@
                                 </ul>
                             </div>
                             <div class="side-menu-header">
-                                <h4 class="text-left">Malicious App detection</h4>
+                                <h4 class="text-left">Android Malware</h4>
                             </div>
                             <div class="side-menu-content">
                                 <ul class="side_nav">
-                                    <li><a class="nav-link" href="#diff-types">Different Types of Malicious App</a></li>
+                                	<li><a class="nav-link" href="#mal-app-intro">Introduction</a></li>
+                                    <li><a class="nav-link" href="#malware-detection">Malware Detection</a></li>
                                 </ul>
                             </div>
                             <div class="side-menu-header">
@@ -152,31 +153,66 @@
                         </section>
                     </section>
                     <section class="section" id="malicious-app-detection">
-                        <h2 class="content-title">What is a Malicious App ?</h2>
-                        <section class="section" id="mal-app-det-intro">
+                        <h2 class="content-title">Android Malware</h2>
+                        <section class="section" id="mal-app-intro">
                             <p>
-                                A malicious app is a software or piece of code designed for nefarious purposes. As practice shows us, these purposes can range from recon (i.e., gathering intel on a designated target to track movement and identify vulnerabilities) to intentionally damage tangible or intangible assets
+                                A malicious App / Malware is a software or piece of code designed for nefarious purposes. As practice shows us, these purposes can range from recon (i.e., gathering intel on a designated target to track movement and identify vulnerabilities) to intentionally damage tangible or intangible assets.
+                            </p>
+                            <p>
+								Android malware can be characterized in different ways: a systematic characterization is proposed ranging from their installation, activation, to the carried malicious payloads. Thus, malware installation can be generalized into three main social engineering-based techniques:
+							</p>
+							<p>
+								<ol>
+									<li>
+										Repackaging
+										<p>
+											Repackaging is one of the most common techniques that malware authors use to piggyback malicious payloads into applications. In essence, malware authors get an application file, disassemble them, enclose malicious payloads, reassemble, and submit the new application to an official or alternative market. Users could be vulnerable by being enticed to download and install these infected applications. 
+										</p>
+									</li>
+									<li>
+										Update attack 
+										<p>
+											In the case of the update attack, instead of enclosing the payload as a whole only an update component is included, which will fetch or download the malicious payloads at runtime. Because the malicious payload is in the “updated” application, not the original application itself, it is stealthier than the malware installation technique that directly includes the entire malicious payload in the first place.
+										</p>
+									</li>
+									<li>
+										Drive-by download
+										<p>
+											This technique applies the traditional drive-by download attack to mobile space. Though they are not directly exploiting mobile browser vulnerabilities, they are essentially enticing users to download “interesting” or “feature-rich” applications.
+										</p>
+									</li>
+								</ol>
                             </p>
                         </section>
-                        <section class="section" id="diff-types">
-                            <h3 class="content-title">Different Types of Malicious App</h3>
-                            <ol>
-                                <li>
-                                    Spyware and Madware
-                                </li>
-                                <li>
-                                    Drive-by Downloads
-                                </li>
-                                <li>
-                                    Viruses and Trojans
-                                </li>
-                                <li>
-                                    Mobile Phishing
-                                </li>
-                                <li>
-                                    Browser Exploits
-                                </li>
-                            </ol>
+                        <section class="section" id="malware-detection">
+                            <h3 class="content-title">Android Malware Detection</h3>
+                            <div class="d-flex align-items-center justify-content-center">
+                                        <img src="assets/img/other_topics/malware_detection.png" alt="Dynamic Analysis" class="img-fluid">
+                            </div>
+                            <br>
+                            <p>
+                            	Android Malware Detection techniques can be classified into three detection techniques: 
+                            	signature-based (SB), anomaly-based (AB), and specification-based (SPB) detection. <br>
+
+								Signature-based detection refers to the malware detection by comparing the application signature or pattern captured with a database of known attacks or threats. <br>
+
+								Anomaly Based detection monitors regular activities in the devices and looks for any behavior that deviates from the normal pattern. <br>
+
+								SPB detection also monitors for any deviation but rather than detecting the occurrence of specific attack patterns; it monitors for deviation of their behavior from the normal specification.
+                            </p>
+
+                            <p>
+                            	The detection analysis category involves reverse engineering techniques aimed to obtain information about the behavior of a malware in its environment. On the one hand, in static analysis, detection is done through the source code, binary, or the API level without the execution of the Android malware. On the other hand, dynamic detection detects malware through the execution behavior of the malware. In this case, the detection is done through monitoring the execution of Android malware activity at runtime.
+                            </p>
+
+                            <p>
+                            	The detection deployment platform category helps to identify whether the malware detection is deployed in the host or on a remote server. In host detection, all the activity of the device is monitored, analyzed, and processed in the device itself. Meanwhile remote deployment requires a remote server, which monitors the activity of the device on the device but performs the analysis and detection process on the remote server.
+                            </p>
+
+                            <p>
+                            	Nowadays, most detection techniques for Android malware use statically extracted data from the AndroidManifest.xml file or Android API function calls, as well as dynamically obtained information from network traffic and system call tracing. Moreover, most current detection systems equipped with a database of regular expressions that specify byte or instruction sequences that are considered malicious are largely based on syntactic signatures and employ static analysis techniques. Unfortunately, static and signature-based analysis techniques can be evaded by malware applications using techniques, such as polymorphism, metamorphism, and dynamic code loading.
+                            </p>
+
                         </section>
                     </section>
                     <section class="section" id="useful-tools">
