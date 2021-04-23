@@ -65,8 +65,14 @@ function foo() {
 		setTimeout(function (){
 			console.clear();
 			console.log(logo);
-		},100);
-
+		});
+		setInterval(function (){
+			console.clear();
+			console.log(logo);
+		},10000);
+		if ($(window).width()<736){
+			alert("This website is made for Desktop View only.\n\nPlease switch to a larger screen to have a better experience.");
+		}
 		// var AsciiMorph = (function() {
 		//
 		// 	'use strict';

@@ -281,6 +281,7 @@ a{
 .custom-card{
     background: #263238;
     padding: 25px;
+    margin: 10px;
     border-radius: 15px;
 }
 .custom-card>div>div{
