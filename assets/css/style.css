@@ -133,8 +133,7 @@ body{
     color: #ececec;
 }
 .side-menu-content>ul li:hover>a{
-    margin-left: -5px;
-    border-left: solid 5px white;
+    background: #424242;
 }
 .side-menu-content>ul li>a.active{
     margin-left: -5px;
