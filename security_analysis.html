@@ -214,13 +214,42 @@
                             </ul>
                             So instead of breaking the defence, the approach of dynamic analysis is to work from the inside i.e. to exploit the application’s own ability to perform tasks to our advantage and crack into it.
                         </section>
+                          
+                        <section class="section" id="da-tools">
+                              <h3 class="content-title">Tools</h3>
+                              For the purpose of this tutorial, we use a platform called AppUse, which brings together many useful tools and custom scripts for mobile application security testing under one GUI. AppUse eliminates the need of painstakingly installing numerous security tools by packaging them into a virtual machine, and thus it will require a VM player to run. Following are the links to download AppUse and VMware Player -
+                              <ol>
+                                    <li>
+                                          <a href="https://appsec-labs.com/appuse-pro/" target="_blank">AppUse</a>
+                                    </li>
+                                    
+                                    <li>
+                                          <a href="https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html" target="_blank">VMware Player</a>
+                                    </li>
+                              </ol>
+                              AppUse lets us perform dynamic analysis of both Android and iOS applications. It also lets us perform reverse engineering and code analysis too! So it is all-encompassing and powerful weapon for mobile application security testing.
+                              
+                        </section>      
                         <section class="section" id="mem-dump">
                             <h3 class="content-title">Memory Dump Analysis</h3>
-                            This is performed using Eclipse MAT tool. Following is an example of exposing the password entered by a user into an app by analysing the memory dump.
+                            Memory dump of an application is analysed when it is running. This can potentially reveal - 
+                              <ul>
+                                    <li> 
+                                          Pieces of code
+                                    </li>
+                                    <li>
+                                          Sensitive data viz. app data, passwords, encryption keys, network traffic, calculations
+                                    </li>
+                                    <li>
+                                          Interaction with OS - files, processes
+                                    </li>
+                              </ul>
+                              Since android is a linux based OS, we could use a generic linux memory dump analyzer but it would reveal raw and low level data. To analyze the memory dump at a higher level we exploit the Java objects used in Android. We use a tool called Eclipse MAT that dumps app data and displays it in the form of comprehensible Java objects. Additional feature of Eclipse MAT is that it allows SQL query of the memory dump!
+                              Following is an example of exposing the password entered by a user into an app by analysing the memory dump.
                             Steps:
                             <ol>
                                 <li>
-                                    AppUse dashboard - AppUse is a comprehensive tool for mobile application pentesting. It brings many tools under one GUIw w
+                                    AppUse dashboard - 
                                     <div class="d-flex align-items-center justify-content-center">
                                         <img src="assets/img/security_analysis/dyn_analysis-1.png" alt="Dynamic Analysis" class="img-fluid">
                                     </div>
@@ -248,7 +277,7 @@
                                     <br>
                                 </li>
                                 <li>
-                                    Converting the .hprof file into readable version
+                                    Converting the .hprof file into Eclipse MAT compatible .hprof version
                                     <pre><code class="console text-light bg-dark">hprof-conv comm.appsec.hackmepal.hprof mat.hprof</code></pre>
                                 </li>
                                 <li>
@@ -287,7 +316,52 @@
                                     Expose secrets from memory
                                 </li>
                             </ol>
-                        </section>
+                              
+                              <p>
+                                    If the source code was available, debugging is no big deal. But that’s not the case most of the time source code is unavailable. Also, decompiling an app using dex2jar and rebuilding the project with its dependencies is tricky and difficult. Alternatively, we use remote debug smali code, which is byte level assembly level code. 
+                                    Following are the key steps in debugging - 
+                              </p>
+                              <ol>
+                                    <li> 
+                                          Decode apk in debug mode 
+                                          <code> apktool d -d app.apk out </code>
+                                    </li>
+                                    <li> 
+                                          Make it debuggable in the AndroidManifest.xml <application/> tag
+                                          <code> <application .. android:debuggable="true"/> </code>
+                                    </li>
+                                    <li>
+                                          Build new apk in debug mode 
+                                          <code> apktool b -d out </code>
+                                    </li>
+                                    <li>
+                                          Sign, install, and run new apk
+                                          <code> signapk input.apk </code>
+                                    </li>
+                                    <li>
+                                          Create Netbeans project with the smali code
+                                    </li>
+                                    <li>
+                                          Attach debugger
+                                    </li>
+                                    <li>
+                                          Set breakpoint
+                                    </li>
+                              </ol>
+                               
+                              <p>
+                              Debugging lets you play with code and run the functions in it on custom parameters. For example, if the the application is poorly designed then one could easily intercept the traffic generated by the app by setting up a Burp proxy and could modify the request appropriately.
+                              </p>
+                              
+                              <p>
+                                    There is another useful tool in AppUse suite called ReFrameworker which is used to change app behaviour without patching any code. Interested folks can explore it further. On a higher level, it works in the following way -
+                              </P>      
+                              <ol>
+                                    <li>The android runtime is compiled with many hooks planted inside the code</li>
+                                    <li>These hooks look for a file named “Reframeworker.xml” located inside <code> /data/system </code> </li>
+                                    <li>Each time the app is run and when a hooked runtime is called, it loads the ReFrameworker configuration along with the contained rules</li>
+                              </ol>                                     
+                          </section>
                     </section>
                     <section class="section" id="data-storage-analysis">
                         <h2 class="content-title">Data Storage Analysis</h2>
