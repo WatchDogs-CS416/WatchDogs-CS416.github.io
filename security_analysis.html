@@ -217,7 +217,9 @@
                           
                         <section class="section" id="da-tools">
                               <h3 class="content-title">Tools</h3>
-                              For the purpose of this tutorial, we use a platform called <b>AppUse</b> (developed by <a href="https://appsec-labs.com/" target="_blank">AppSec Labs</a>), which brings together many useful tools and custom scripts for mobile application security testing under one GUI. AppUse eliminates the need of painstakingly installing numerous security tools by packaging them into a virtual machine, and thus it will require a VM player to run. Following are the links to download AppUse and VMware Player -
+                              <p>
+                                    For the purpose of this tutorial, we use a platform called <b>AppUse</b> (developed by <a href="https://appsec-labs.com/" target="_blank">AppSec Labs</a>), which brings together many useful tools and custom scripts for mobile application security testing under one GUI. AppUse eliminates the need of painstakingly installing numerous security tools by packaging them into a virtual machine, and thus it will require a VM player to run. Following are the links to download AppUse and VMware Player -
+                              </p>
                               <ol>
                                     <li>
                                           <a href="https://appsec-labs.com/appuse-pro/" target="_blank">AppUse</a>
@@ -232,7 +234,10 @@
                         </section>      
                         <section class="section" id="mem-dump">
                             <h3 class="content-title">Memory Dump Analysis</h3>
-                            Memory dump of an application is analysed when it is running. This can potentially reveal - 
+                              <p>
+                                    Memory dump of an application is analysed when it is running. This can potentially reveal - 
+                              </p>
+                              
                               <ul>
                                     <li> 
                                           Pieces of code
@@ -244,10 +249,13 @@
                                           Interaction with OS - files, processes
                                     </li>
                               </ul>
-                              Since android is a linux based OS, we could use a generic linux memory dump analyzer but it would reveal raw and low level data. To analyze the memory dump at a higher level we exploit the Java objects used in Android. We use a tool called Eclipse MAT that dumps app data and displays it in the form of comprehensible Java objects. Additional feature of Eclipse MAT is that it allows SQL query of the memory dump!
-                              Following is an example of exposing the password entered by a user into an app by analysing the memory dump.
-                            Steps:
-                            <ol>
+                              
+                              <p>
+                                    Since android is a linux based OS, we could use a generic linux memory dump analyzer but it would reveal raw and low level data. To analyze the memory dump at a higher level we exploit the Java objects used in Android. We use a tool called Eclipse MAT that dumps app data and displays it in the form of comprehensible Java objects. Additional feature of Eclipse MAT is that it allows SQL query of the memory dump!
+                                    Following is an example of exposing the password entered by a user into an app by analysing the memory dump - 
+                              </P>
+                          
+                              <ol>
                                 <li>
                                     AppUse dashboard - 
                                     <div class="d-flex align-items-center justify-content-center">
@@ -301,8 +309,10 @@
                         </section>
                         <section class="section" id="debugging">
                             <h3 class="content-title">Debugging</h3>
-                            This includes -
-                            <ol>
+                              <p>
+                                    This includes -
+                              </p>
+                              <ol>
                                 <li>
                                     Setting breakpoints
                                 </li>
@@ -358,7 +368,7 @@
                               </P>      
                               <ol>
                                     <li>The android runtime is compiled with many hooks planted inside the code</li>
-                                    <li>These hooks look for a file named “Reframeworker.xml” located inside <code> /data/system </code> </li>
+                                    <li>These hooks look for a file named <code>Reframeworker.xml</code> located inside <code> /data/system </code> </li>
                                     <li>Each time the app is run and when a hooked runtime is called, it loads the ReFrameworker configuration along with the contained rules</li>
                               </ol>                                     
                           </section>
