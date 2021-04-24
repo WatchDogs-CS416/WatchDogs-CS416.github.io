@@ -217,7 +217,7 @@
                           
                         <section class="section" id="da-tools">
                               <h3 class="content-title">Tools</h3>
-                              For the purpose of this tutorial, we use a platform called AppUse, which brings together many useful tools and custom scripts for mobile application security testing under one GUI. AppUse eliminates the need of painstakingly installing numerous security tools by packaging them into a virtual machine, and thus it will require a VM player to run. Following are the links to download AppUse and VMware Player -
+                              For the purpose of this tutorial, we use a platform called <b>AppUse</b> (developed by <a href="https://appsec-labs.com/" target="_blank">AppSec Labs</a>), which brings together many useful tools and custom scripts for mobile application security testing under one GUI. AppUse eliminates the need of painstakingly installing numerous security tools by packaging them into a virtual machine, and thus it will require a VM player to run. Following are the links to download AppUse and VMware Player -
                               <ol>
                                     <li>
                                           <a href="https://appsec-labs.com/appuse-pro/" target="_blank">AppUse</a>
@@ -263,7 +263,7 @@
                                     <br>
                                 </li>
                                 <li>
-                                    Android emulator - For the purpose of this example we used a custom built vulnerable app called HackMePal
+                                    Android emulator - For the purpose of this tutorial we used a custom built vulnerable app called <b>HackMePal</b> by AppSec Labs
                                     <div class="d-flex align-items-center justify-content-center">
                                         <img src="assets/img/security_analysis/dyn_analysis-3.png" alt="Dynamic Analysis" class="img-fluid">
                                     </div>
@@ -323,20 +323,20 @@
                               </p>
                               <ol>
                                     <li> 
-                                          Decode apk in debug mode 
-                                          <code> apktool d -d app.apk out </code>
+                                          Decode apk in debug mode <br>
+                                          <pre><code class="console text-light bg-dark">apktool d -d app.apk out</code></pre>
                                     </li>
                                     <li> 
-                                          Make it debuggable in the AndroidManifest.xml <application/> tag
-                                          <code> <application .. android:debuggable="true"/> </code>
+                                          Make it debuggable in the <code> AndroidManifest.xml </code> application tag <br>
+                                          <pre><code class="console text-light bg-dark">&lt;application .. android:debuggable="true"/&gt; </code></pre>
                                     </li>
                                     <li>
-                                          Build new apk in debug mode 
-                                          <code> apktool b -d out </code>
+                                          Build new apk in debug mode  <br>
+                                          <pre><code class="console text-light bg-dark">apktool b -d out</code></pre>
                                     </li>
                                     <li>
                                           Sign, install, and run new apk
-                                          <code> signapk input.apk </code>
+                                          <pre><code class="console text-light bg-dark">signapk input.apk </code></pre>
                                     </li>
                                     <li>
                                           Create Netbeans project with the smali code
