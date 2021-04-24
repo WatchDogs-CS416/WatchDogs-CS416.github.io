@@ -329,3 +329,103 @@ a{
     padding: 5px;
     border-radius: 5px;
 }
+.preloader{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    background: #111111;
+    z-index: 1021;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+    overflow: hidden;
+}
+.canvas{
+    /*width: 100%;*/
+    height: 80%;
+
+    /*position: absolute;*/
+    /*left: 50%;*/
+    /*top: 50%;*/
+    /*margin-top: -200px;*/
+    /*margin-left: -200px;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: monospace;
+    overflow: hidden;
+    font-size: 0.6em;
+    color: #fff;
+}
+.loading{
+    height: 20%;
+    font-weight: bold;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+.loading>span:last-child{
+    width: 100%!important;
+    animation: none!important;
+    margin: 0 5px!important;
+}
+.loading>span:last-child:after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    top: 0;
+    left: 0;
+    animation: blink infinite 1s;
+    animation-delay: 1.5s;
+}
+.loading>span{
+    animation: write 0.1s forwards;
+    position: relative;
+    overflow: hidden;
+    width: 0;
+    display: block;
+    padding: 0;
+}
+.loading>span:nth-child(1){
+    animation-delay: 0.5s;
+}
+.loading>span:nth-child(2){
+    animation-delay: 0.6s;
+}
+.loading>span:nth-child(3){
+    animation-delay: 0.7s;
+}
+.loading>span:nth-child(4){
+    animation-delay: 0.8s;
+}
+.loading>span:nth-child(5){
+    animation-delay: 0.9s;
+}
+.loading>span:nth-child(6){
+    animation-delay: 1s;
+}
+.loading>span:nth-child(7){
+    animation-delay: 1.1s;
+}
+
+@keyframes write {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+        padding: 0 5px;
+    }
+}
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
