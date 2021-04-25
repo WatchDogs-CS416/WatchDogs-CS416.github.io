@@ -1,1 +1,1 @@
-Android Security Analysis
+This is an informative website on Security Analysis of Android Applications.
