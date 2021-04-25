@@ -324,17 +324,3 @@ var asciis = [
 		"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
 	]
 ];
-
-AsciiMorph.render(asciis[0]);
-
-var currentIndex = 2;
-
-setTimeout(function() {
-	AsciiMorph.morph(asciis[1]);
-}, 1000);
-
-// setInterval(function() {
-// 	AsciiMorph.morph(asciis[currentIndex]);
-// 	currentIndex++;
-// 	currentIndex%= asciis.length;
-// }, 2000);
